@@ -13,6 +13,12 @@ python app.py
 
 Abra `http://127.0.0.1:5000`. O Flask serve a página e valida a configuração do personagem em `POST /api/character`.
 
+## Publicar na Vercel
+
+A versão online está em [leonardo-tech-lab.vercel.app](https://leonardo-tech-lab.vercel.app). O projeto usa o preset **Flask** na Vercel, sem comando de build ou diretório de saída personalizado. A página, o minijogo, as imagens e `POST /api/character` funcionam no plano Hobby.
+
+Depois de conectar o repositório ao projeto Vercel, cada push na branch `main` publica uma nova versão. Também é possível publicar a partir desta pasta com `vercel deploy --prod`.
+
 ## Publicar no GitHub Pages
 
 O mesmo `index.html`, `static/` e `profile.json` funciona sem servidor Python. Publique o repositório no GitHub e, em **Settings → Pages**, escolha **Deploy from a branch**, sua branch principal e a pasta **/(root)**. O minijogo roda integralmente no navegador; a API Flask só fica disponível em hospedagens Python.

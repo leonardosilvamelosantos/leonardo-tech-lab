@@ -1,0 +1,10 @@
+.git/
+.env*
+.vercel/
+.impeccable/
+.superpowers/
+.venv/
+__pycache__/
+tests/
+DESIGN.md
+PRODUCT.md
