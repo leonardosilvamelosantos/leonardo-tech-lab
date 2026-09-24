@@ -19,6 +19,14 @@ A versão online está em [leonardo-tech-lab.vercel.app](https://leonardo-tech-l
 
 Depois de conectar o repositório ao projeto Vercel, cada push na branch `main` publica uma nova versão. Também é possível publicar a partir desta pasta com `vercel deploy --prod`.
 
+Para atualizar o site após mudar o código ou `profile.json`:
+
+```powershell
+git add .
+git commit -m "Atualiza portfólio"
+git push origin main
+```
+
 ## Publicar no GitHub Pages
 
 O mesmo `index.html`, `static/` e `profile.json` funciona sem servidor Python. Publique o repositório no GitHub e, em **Settings → Pages**, escolha **Deploy from a branch**, sua branch principal e a pasta **/(root)**. O minijogo roda integralmente no navegador; a API Flask só fica disponível em hospedagens Python.
