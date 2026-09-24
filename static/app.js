@@ -265,16 +265,24 @@ function renderProfile(profile) {
     const tags = document.createElement('div'); tags.className = 'project-tags';
     (project.tags || []).forEach((tag) => { const chip = document.createElement('span'); chip.textContent = tag; tags.append(chip); });
     details.append(type, title, description, tags);
-    let link;
-    if (project.url) link = makeLink(project.url, 'Abrir projeto ↗', 'project-link');
-    else { link = document.createElement('span'); link.className = 'project-link'; link.textContent = 'Código neste repositório'; link.setAttribute('aria-disabled', 'true'); }
-    row.append(number, details, link); projectList.append(row);
+    const links = document.createElement('div'); links.className = 'project-links';
+    if (project.url) links.append(makeLink(project.url, 'Ver código ↗', 'project-link'));
+    else { const status = document.createElement('span'); status.className = 'project-link'; status.textContent = project.linkLabel || 'Projeto sem link público'; status.setAttribute('aria-disabled', 'true'); links.append(status); }
+    if (project.demoUrl) links.append(makeLink(project.demoUrl, 'Ver demonstração ↗', 'project-link'));
+    row.append(number, details, links); projectList.append(row);
   });
   $('#projects-note').hidden = (profile.projects || []).length > 1;
   if (profile.github) { const link = $('#github-link'); link.href = profile.github; link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+  if (profile.portfolio) { const link = $('#portfolio-link'); link.href = profile.portfolio; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.hidden = false; }
   if (profile.linkedin) { const link = $('#linkedin-link'); link.href = profile.linkedin; link.target = '_blank'; link.rel = 'noopener noreferrer'; }
   if (profile.email) $('#email-link').href = `mailto:${profile.email}`;
-  else { $('#email-link').href = '#sobre'; $('#email-link').firstChild.textContent = 'Conheça meu trabalho '; }
+  else if (profile.linkedin) {
+    const link = $('#email-link');
+    link.href = profile.linkedin;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.firstChild.textContent = 'Conversar pelo LinkedIn ';
+  } else { $('#email-link').href = '#sobre'; $('#email-link').firstChild.textContent = 'Conheça meu trabalho '; }
 
   const skills = (profile.skills || []).filter((skill) => Number(skill.weight) > 0);
   const total = skills.reduce((sum, skill) => sum + Number(skill.weight), 0);

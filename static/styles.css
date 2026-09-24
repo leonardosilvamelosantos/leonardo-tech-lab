@@ -15,3 +15,5 @@
 .control-label{display:flex;justify-content:space-between;gap:12px;font:600 14px var(--mono)}.control-label small{font:400 12px var(--body);color:#536678;text-align:right}.code-comment{color:#9fafbd}.availability-led,.tiny-led{box-shadow:none}.panel-title p{color:#506577}.lab-note{color:#52677b}.section-context{color:#466477}.game-label,.game-badge,.skills-top,.donut-hole span,.project-tags span,.code-heading,.stage-coordinate{font-size:11px}.game-stats{font-size:12px}.game-help,.skills-caption,.legend-item,.empty-note,.lab-feedback{font-size:13px}.visual-stage{padding:8px}.skills-panel{box-shadow:none}.hero-visual{box-shadow:12px 18px 0 #060b14}.game-badge{padding:8px 10px}
 @media(max-width:450px){.control-label{display:block}.control-label small{display:block;text-align:left;margin-top:4px}.game-stats{font-size:11px}}
 .about-copy>p.profile-identity{margin:19px 0 0;color:#213f4c;font:600 15px var(--display)}
+.project-links{display:flex;flex-direction:column;align-items:flex-end;gap:8px;justify-self:end;text-align:right}
+@media(max-width:760px){.project-links{grid-column:2;justify-self:start;align-items:flex-start;text-align:left}}

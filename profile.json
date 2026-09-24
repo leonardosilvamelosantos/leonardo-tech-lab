@@ -1,28 +1,69 @@
 {
-  "name": "Leonardo Silva",
-  "headline": "Desenvolvedor, educador e criador de experiências digitais",
+  "name": "Leonardo Santos",
+  "headline": "Desenvolvedor full stack · estudante de Ciência da Computação",
   "location": "Poços de Caldas, MG",
   "email": "",
-  "github": "",
-  "linkedin": "",
-  "bio": "Texto provisório: apresente aqui sua trajetória real, sua experiência com Python e desenvolvimento, e por que deseja ensinar tecnologia.",
+  "github": "https://github.com/leonardosilvamelosantos",
+  "linkedin": "https://www.linkedin.com/in/mac-and-dev/",
+  "portfolio": "https://leonardosantos-dev.vercel.app/",
+  "bio": "Estudo Ciência da Computação na PUC Minas e desenvolvo aplicações web, ferramentas em Python e projetos de automação. Quero usar essa experiência para ensinar tecnologia de forma prática: partir de uma ideia, construir, testar e entender o que acontece no código.",
   "resume": [
-    "Experiência: descreva uma atuação ou projeto verificável",
-    "Formação: informe seu curso e instituição",
-    "Ensino: conte sobre aulas, mentoria ou atividades com jovens, se houver"
+    "Ciência da Computação — PUC Minas",
+    "Desenvolvimento full stack com projetos em React, TypeScript, Node.js e Python",
+    "Aplicações desktop, automação e integração de sistemas"
   ],
   "skills": [
-    { "name": "Python & Flask", "weight": 40, "color": "#b9f477" },
-    { "name": "Web & interfaces", "weight": 35, "color": "#60c6cf" },
-    { "name": "Jogos & educação", "weight": 25, "color": "#f59b79" }
+    { "name": "Web & interfaces", "weight": 35, "color": "#b9f477" },
+    { "name": "Python & automação", "weight": 30, "color": "#60c6cf" },
+    { "name": "Desktop & integração", "weight": 20, "color": "#f59b79" },
+    { "name": "Dados & IA", "weight": 15, "color": "#af9cf5" }
   ],
   "projects": [
     {
       "title": "Laboratório de variáveis",
-      "type": "Projeto deste portfólio",
+      "type": "Demonstração interativa",
       "description": "Um personagem que muda com variáveis e entra em um minijogo. Demonstra lógica, interface, canvas e uma API em Flask.",
       "tags": ["Python", "Flask", "JavaScript", "Canvas"],
-      "url": ""
+      "url": "",
+      "linkLabel": "Você está neste projeto"
+    },
+    {
+      "title": "SmartSalão / SalaoIA",
+      "type": "Produto web · projeto privado",
+      "description": "Plataforma de agendamento para salões e barbearias com painel web, página pública de reservas, API e fluxo de atendimento pelo WhatsApp.",
+      "tags": ["Node.js", "PostgreSQL", "Next.js", "WhatsApp"],
+      "url": "",
+      "linkLabel": "Repositório privado"
+    },
+    {
+      "title": "Task Bar Hero Code",
+      "type": "Ferramenta open source",
+      "description": "Widget flutuante para Windows que mostra o estado de sessões do Claude Code em tempo real. Combina Python, Tkinter e hooks locais.",
+      "tags": ["Python", "Tkinter", "Node.js", "Windows"],
+      "url": "https://github.com/leonardosilvamelosantos/taskbar-code"
+    },
+    {
+      "title": "Painel Acadêmico",
+      "type": "Aplicativo desktop · projeto local",
+      "description": "Reúne grade de aulas, tarefas e atividades do Canvas em um aplicativo Windows, com sincronização por iCalendar e armazenamento local.",
+      "tags": ["Tauri", "Rust", "React", "SQLite"],
+      "url": "",
+      "linkLabel": "Projeto local"
+    },
+    {
+      "title": "Certificado SRC",
+      "type": "Aplicação web",
+      "description": "Interface para emissão, consulta e validação de certificados digitais, incluindo verificação de autenticidade por código.",
+      "tags": ["Next.js", "TypeScript", "API", "Certificados"],
+      "url": "https://github.com/leonardosilvamelosantos/certificado-src",
+      "demoUrl": "https://v0-landing-page-de-certificado.vercel.app/"
+    },
+    {
+      "title": "JusTrack",
+      "type": "Aplicação web",
+      "description": "Painel de acompanhamento de processos judiciais com cadastro, filtros por tribunal e status e visualização centralizada.",
+      "tags": ["React", "TypeScript", "Tailwind", "Vite"],
+      "url": "https://github.com/leonardosilvamelosantos/JusTrack"
     }
   ]
 }

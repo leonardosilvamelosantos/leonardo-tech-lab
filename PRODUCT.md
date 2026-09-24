@@ -27,7 +27,9 @@ An interactive portfolio that demonstrates teaching style through the artifact i
 - A character creator and mini game with visible variable changes.
 - An about section with résumé, a GitHub portfolio area and a skill distribution chart.
 - The static site must work without Flask. Flask adds a working Python API when hosted on a Python server.
-- Real name, GitHub profile, résumé and project details have not yet been provided. These must remain clearly editable examples, not fabricated claims.
+- The candidate's public GitHub is `leonardosilvamelosantos`. Public repositories and local project documentation support the portfolio descriptions.
+- SmartSalão/SalaoIA and Painel Acadêmico do not have publicly accessible repository links; show their status plainly rather than inventing links.
+- The site does not claim prior teaching experience that has not been supplied.
 
 ## Product Principles
 

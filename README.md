@@ -29,7 +29,7 @@ Abra `http://127.0.0.1:8000`.
 
 Edite [`profile.json`](profile.json): nome, localização, biografia, currículo, links, projetos e áreas de atuação. Os pesos de `skills` são uma distribuição visual de foco, não notas de proficiência; podem ser alterados ou renomeados. Não publique dados pessoais que não queira divulgar.
 
-O projeto inicial no arquivo é este próprio laboratório. Acrescente seus projetos reais em `projects` com `title`, `type`, `description`, `tags` e `url`. Links vazios não serão publicados como URLs.
+Os projetos selecionados já estão em `projects`. Cada entrada aceita `title`, `type`, `description`, `tags`, `url` e, se o projeto não tiver link público, `linkLabel`. Links vazios não serão publicados como URLs. SmartSalão/SalaoIA e Painel Acadêmico estão identificados como projetos sem repositório público.
 
 ## Estrutura
 

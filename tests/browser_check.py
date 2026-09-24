@@ -19,7 +19,14 @@ with sync_playwright() as playwright:
         page.goto(base_url)
         page.wait_for_load_state("networkidle")
         assert page.locator("#bio").inner_text().strip()
-        assert page.locator("#projects-list article").count() >= 1
+        assert page.locator("#projects-list article").count() == 6
+        assert "Leonardo Santos" in page.locator("#profile-identity").inner_text()
+        assert page.locator('#github-link').get_attribute('href') == 'https://github.com/leonardosilvamelosantos'
+        assert page.locator('#projects-list a[href*="taskbar-code"]').count() == 1
+        assert page.locator('#projects-list a[href*="certificado-src"]').count() == 1
+        assert page.locator('#projects-list a[href*="JusTrack"]').count() == 1
+        assert page.locator('#projects-list a[href*="landing-page-de-certificado"]').count() == 1
+        assert page.locator('#portfolio-link').is_visible()
         page.locator('input[name="cor"][value="ciano"]').check()
         page.locator("#velocidade").fill("8")
         assert 'cor = "ciano"' in page.locator("#code-preview").inner_text()
