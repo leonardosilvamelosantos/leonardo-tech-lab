@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1220">
+    <meta name="description" content="Portfólio interativo de desenvolvimento, educação em tecnologia e criação de jogos.">
+    <title>Laboratório de ideias — portfólio interativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="shell nav-wrap">
+        <a class="brand" href="#inicio" aria-label="Ir para o início"><span class="brand-mark" aria-hidden="true">{ }</span><span>LAB<span class="brand-dot">.</span>IDEIAS</span></a>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a href="#experimento">Experimento</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#sobre">Sobre mim</a>
+        </nav>
+        <a class="nav-contact" href="#contato">Vamos conversar <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero shell" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="availability"><span class="availability-led" aria-hidden="true"></span> Portfólio interativo <span class="availability-separator">/</span> Poços de Caldas, MG</div>
+          <h1 id="hero-title">Tecnologia fica mais interessante quando a gente <em>coloca a mão no código.</em></h1>
+          <p class="hero-summary">Desenvolvimento, educação e jogos no mesmo espaço. Ajuste as variáveis, crie seu personagem e veja uma ideia ganhar vida.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#experimento">Explorar o laboratório <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#sobre">Conheça quem criou <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-footnote"><span class="footnote-line"></span> Feito para mostrar como eu penso, construo e ensino.</div>
+        </div>
+        <div class="hero-visual" aria-label="Prévia do personagem interativo">
+          <div class="visual-top"><span>PERSONAGEM.PY</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="visual-stage"><canvas id="hero-avatar" width="320" height="300" role="img" aria-label="Personagem pixelado criado com variáveis"></canvas><span class="stage-coordinate top-left">X: 24&nbsp; Y: 08</span><span class="stage-coordinate bottom-right">CRIATIVIDADE = ON</span></div>
+          <div class="visual-bottom"><span><b class="tiny-led"></b> PRONTO PARA CRIAR</span><span class="visual-arrow" aria-hidden="true">↗</span></div>
+        </div>
+      </section>
+
+      <section class="experiment-section" id="experimento" aria-labelledby="experiment-title">
+        <div class="shell">
+          <div class="section-heading experiment-heading"><div><p class="section-context">Aprenda fazendo / demonstração interativa</p><h2 id="experiment-title">Uma variável muda tudo.</h2></div><p>Mude os atributos, observe o código e jogue com o personagem que você criou.</p></div>
+          <div class="lab-grid">
+            <div class="lab-controls">
+              <div class="panel-title"><span class="panel-icon">{ }</span><div><h3>Configure seu personagem</h3><p>Cada ajuste altera uma variável de verdade.</p></div></div>
+              <div class="control-group"><div class="control-label">cor <small>Define o visual do personagem</small></div><div class="color-options" id="color-options" role="radiogroup" aria-label="Cor do personagem"><label class="color-option"><input type="radio" name="cor" value="menta" checked><span class="color-swatch mint"></span>Menta</label><label class="color-option"><input type="radio" name="cor" value="ciano"><span class="color-swatch cyan"></span>Ciano</label><label class="color-option"><input type="radio" name="cor" value="coral"><span class="color-swatch coral"></span>Coral</label></div></div>
+              <div class="control-group"><label for="velocidade">velocidade <small>Quanto mais alta, mais rápido você se move</small></label><div class="range-row"><span>2</span><input id="velocidade" type="range" min="2" max="8" value="5"><output id="velocidade-value" for="velocidade">5</output><span>8</span></div></div>
+              <div class="control-group"><label for="energia">energia <small>Quantas colisões você pode aguentar</small></label><div class="range-row"><span>3</span><input id="energia" type="range" min="3" max="7" value="5"><output id="energia-value" for="energia">5</output><span>7</span></div></div>
+              <div class="control-group"><label for="acessorio">acessorio <small>Um detalhe para deixar o avatar seu</small></label><select id="acessorio"><option value="nenhum">Sem acessório</option><option value="oculos">Óculos</option><option value="antena">Antena</option></select></div>
+              <div class="code-window"><div class="code-heading"><span>seu_personagem.py</span><span>PYTHON</span></div><pre><code id="code-preview"></code></pre></div>
+              <p class="lab-feedback" id="lab-feedback" role="status" aria-live="polite">Altere um valor para ver o código responder.</p>
+            </div>
+            <div class="game-panel"><div class="game-heading"><div><span class="game-label">MINIJOGO · PEGUE AS ESTRELAS</span><h3>Teste sua criação.</h3></div><span class="game-badge">30 SEGUNDOS</span></div><div class="game-stats"><span>Pontos <strong id="score">00</strong></span><span>Energia <strong id="lives">05</strong></span><span>Tempo <strong id="timer">30s</strong></span></div><div class="game-board"><canvas id="game-canvas" width="600" height="440" role="img" aria-label="Área do jogo: colete estrelas e desvie dos obstáculos"></canvas><div class="game-overlay" id="game-overlay"><div class="overlay-orb" aria-hidden="true">✦</div><p id="overlay-title">Sua criação está pronta.</p><span id="overlay-description">Colete estrelas. Desvie dos blocos vermelhos.</span><button class="button button-primary" id="start-game" type="button">Começar a jogar <span aria-hidden="true">→</span></button></div></div><div class="game-help"><span>Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ou as setas para mover</span><span id="engine-status">Modo estático · funciona no GitHub Pages</span></div><div class="touch-controls" aria-label="Controles de movimento"><button type="button" data-move="up" aria-label="Mover para cima">↑</button><div><button type="button" data-move="left" aria-label="Mover para a esquerda">←</button><button type="button" data-move="down" aria-label="Mover para baixo">↓</button><button type="button" data-move="right" aria-label="Mover para a direita">→</button></div></div></div>
+          </div>
+          <p class="lab-note">A interface roda no navegador. Quando executada com Flask, a configuração também é validada por uma API em Python.</p>
+        </div>
+      </section>
+
+      <section class="projects-section shell" id="projetos" aria-labelledby="projects-title"><div class="section-heading"><div><p class="section-context">Código em contexto</p><h2 id="projects-title">Projetos para explorar.</h2></div><p>Uma seleção do que construí — com decisões, ferramentas e resultados visíveis.</p></div><div class="projects-list" id="projects-list"></div><div class="empty-note" id="projects-note">Os projetos reais serão adicionados após conectar meu perfil do GitHub.</div></section>
+
+      <section class="about-section" id="sobre" aria-labelledby="about-title"><div class="shell about-grid"><div class="about-copy"><p class="section-context">O que move meu trabalho</p><h2 id="about-title">Entre ensinar e construir, escolhi fazer os dois.</h2><p class="profile-identity" id="profile-identity"></p><p id="bio"></p><div class="resume-list" id="resume-list"></div><div class="about-actions"><a class="button button-outline" id="github-link" href="#projetos">Ver meus projetos <span aria-hidden="true">↗</span></a><a class="text-link" id="linkedin-link" href="#contato">Mais sobre minha trajetória <span aria-hidden="true">↗</span></a></div></div><div class="skills-panel"><div class="skills-top"><span>MAPA DE ATUAÇÃO</span><span>VISÃO GERAL</span></div><div class="donut-wrap"><div class="donut" id="skills-donut" role="img" aria-label="Gráfico de distribuição das áreas de atuação"><div class="donut-hole"><span>ÁREAS</span><strong>03</strong></div></div><div class="skills-legend" id="skills-legend"></div></div><p class="skills-caption">Distribuição ilustrativa de foco de atuação, editável no perfil. Não representa uma avaliação de proficiência.</p></div></div></section>
+
+      <section class="contact-section shell" id="contato" aria-labelledby="contact-title"><div><p class="section-context">Vamos criar algo?</p><h2 id="contact-title">Uma boa ideia começa com uma conversa.</h2><p>Disponível para conversar sobre ensino de tecnologia, desenvolvimento e projetos criativos.</p></div><a class="button button-primary" id="email-link" href="mailto:">Entrar em contato <span aria-hidden="true">↗</span></a></section>
+    </main>
+    <footer class="site-footer"><div class="shell footer-inner"><span>LAB.IDEIAS <span class="footer-muted">— código, ensino e experimentação.</span></span><span>Feito com Python, Flask e JavaScript. <a href="#inicio">Voltar ao topo ↑</a></span></div></footer>
+  </body>
+</html>

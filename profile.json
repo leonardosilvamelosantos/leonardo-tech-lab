@@ -1,0 +1,28 @@
+{
+  "name": "Leonardo Silva",
+  "headline": "Desenvolvedor, educador e criador de experiências digitais",
+  "location": "Poços de Caldas, MG",
+  "email": "",
+  "github": "",
+  "linkedin": "",
+  "bio": "Texto provisório: apresente aqui sua trajetória real, sua experiência com Python e desenvolvimento, e por que deseja ensinar tecnologia.",
+  "resume": [
+    "Experiência: descreva uma atuação ou projeto verificável",
+    "Formação: informe seu curso e instituição",
+    "Ensino: conte sobre aulas, mentoria ou atividades com jovens, se houver"
+  ],
+  "skills": [
+    { "name": "Python & Flask", "weight": 40, "color": "#b9f477" },
+    { "name": "Web & interfaces", "weight": 35, "color": "#60c6cf" },
+    { "name": "Jogos & educação", "weight": 25, "color": "#f59b79" }
+  ],
+  "projects": [
+    {
+      "title": "Laboratório de variáveis",
+      "type": "Projeto deste portfólio",
+      "description": "Um personagem que muda com variáveis e entra em um minijogo. Demonstra lógica, interface, canvas e uma API em Flask.",
+      "tags": ["Python", "Flask", "JavaScript", "Canvas"],
+      "url": ""
+    }
+  ]
+}
