@@ -92,7 +92,15 @@
       "type": "Aplicação web",
       "description": "Painel de acompanhamento de processos judiciais com cadastro, filtros por tribunal e status e visualização centralizada.",
       "tags": ["React", "TypeScript", "Tailwind", "Vite"],
-      "url": "https://github.com/leonardosilvamelosantos/JusTrack"
+      "url": "https://github.com/leonardosilvamelosantos/JusTrack",
+      "preview": {
+        "src": "static/media/justrack-preview.png",
+        "alt": "Tela do JusTrack com formulário de novo processo e lista de processos em andamento",
+        "caption": "Tela de monitoramento processual do JusTrack",
+        "width": 1236,
+        "height": 865,
+        "lightbox": true
+      }
     }
   ]
 }

@@ -24,7 +24,7 @@ with sync_playwright() as playwright:
         assert page.locator('#github-link').get_attribute('href') == 'https://github.com/leonardosilvamelosantos'
         assert page.locator('#projects-list a[href*="taskbar-code"]').count() == 1
         previews = page.locator('.project-preview img')
-        assert previews.count() == 4
+        assert previews.count() == 5
         gif = page.locator('.project-preview img[src$=".gif"]')
         gif.scroll_into_view_if_needed()
         assert gif.evaluate('async img => { await img.decode(); return img.naturalWidth === 500; }')
@@ -35,6 +35,11 @@ with sync_playwright() as playwright:
         assert 'blur' in page.locator('#project-lightbox').evaluate("el => getComputedStyle(el, '::backdrop').backdropFilter")
         page.screenshot(path=str(out_dir / f"{name}-smart-salao-lightbox.png"))
         page.keyboard.press('Escape')
+        assert page.locator('#project-lightbox').is_hidden()
+        justrack = page.locator('.project-row').filter(has=page.get_by_role('heading', name='JusTrack'))
+        justrack.get_by_role('button', name='Ver imagem').click()
+        assert page.locator('#project-lightbox-image').evaluate('async img => { await img.decode(); return img.naturalWidth === 1236; }')
+        page.locator('#project-lightbox-close').click()
         assert page.locator('#project-lightbox').is_hidden()
         academic = page.locator('.project-row').filter(has=page.get_by_role('heading', name='Painel Acadêmico'))
         academic.get_by_role('button', name='Ver imagem').click()
