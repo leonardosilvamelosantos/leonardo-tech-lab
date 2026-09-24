@@ -5,5 +5,5 @@ The approved direction combines A (technical/editorial) and C (authorial/balance
 - Palette: ink `#0b1220`, slate `#142238`, paper `#f3f5ef`, mint `#b9f477`, cyan `#60c6cf`, coral `#f59b79`.
 - Type: Space Grotesk for display, DM Sans for body, IBM Plex Mono only for code and data.
 - Layout: editorial two-column opening; distinct broad sections below for the game, work, skills and biography.
-- Signature: the character's visual form and Python variables change together.
+- Signature: the character's visual form and Python variables change together; a live grid reveals how directional input changes its position in the game.
 - Motion: subtle cursor/character movement and gameplay only, with reduced-motion support.

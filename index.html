@@ -47,7 +47,7 @@
 
       <section class="experiment-section" id="experimento" aria-labelledby="experiment-title">
         <div class="shell">
-          <div class="section-heading experiment-heading"><div><p class="section-context">Aprenda fazendo / demonstração interativa</p><h2 id="experiment-title">Uma variável muda tudo.</h2></div><p>Mude os atributos, observe o código e jogue com o personagem que você criou.</p></div>
+          <div class="section-heading experiment-heading"><div><p class="section-context">Aprenda fazendo / demonstração interativa</p><h2 id="experiment-title">Uma variável muda tudo.</h2></div><p>Mude os atributos, jogue com o personagem e acompanhe cada movimento por dentro.</p></div>
           <div class="lab-grid">
             <div class="lab-controls">
               <div class="panel-title"><span class="panel-icon">{ }</span><div><h3>Configure seu personagem</h3><p>Cada ajuste altera uma variável de verdade.</p></div></div>
@@ -58,7 +58,23 @@
               <div class="code-window"><div class="code-heading"><span>seu_personagem.py</span><span>PYTHON</span></div><pre><code id="code-preview"></code></pre></div>
               <p class="lab-feedback" id="lab-feedback" role="status" aria-live="polite">Altere um valor para ver o código responder.</p>
             </div>
-            <div class="game-panel"><div class="game-heading"><div><span class="game-label">MINIJOGO · PEGUE AS ESTRELAS</span><h3>Teste sua criação.</h3></div><span class="game-badge">30 SEGUNDOS</span></div><div class="game-stats"><span>Pontos <strong id="score">00</strong></span><span>Energia <strong id="lives">05</strong></span><span>Tempo <strong id="timer">30s</strong></span></div><div class="game-board"><canvas id="game-canvas" width="600" height="440" role="img" aria-label="Área do jogo: colete estrelas e desvie dos obstáculos"></canvas><div class="game-overlay" id="game-overlay"><div class="overlay-orb" aria-hidden="true">✦</div><p id="overlay-title">Sua criação está pronta.</p><span id="overlay-description">Colete estrelas. Desvie dos blocos vermelhos.</span><button class="button button-primary" id="start-game" type="button">Começar a jogar <span aria-hidden="true">→</span></button></div></div><div class="game-help"><span>Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ou as setas para mover</span><span id="engine-status">Modo estático · funciona no GitHub Pages</span></div><div class="touch-controls" aria-label="Controles de movimento"><button type="button" data-move="up" aria-label="Mover para cima">↑</button><div><button type="button" data-move="left" aria-label="Mover para a esquerda">←</button><button type="button" data-move="down" aria-label="Mover para baixo">↓</button><button type="button" data-move="right" aria-label="Mover para a direita">→</button></div></div></div>
+            <div class="game-panel">
+              <div class="game-heading"><div><span class="game-label">MINIJOGO · PEGUE AS ESTRELAS</span><h3>Teste sua criação.</h3></div><span class="game-badge">30 SEGUNDOS</span></div>
+              <div class="game-stats"><span>Pontos <strong id="score">00</strong></span><span>Energia <strong id="lives">05</strong></span><span>Tempo <strong id="timer">30s</strong></span></div>
+              <div class="game-board"><canvas id="game-canvas" width="600" height="440" role="img" aria-label="Área do jogo: colete estrelas e desvie dos obstáculos"></canvas><div class="game-overlay" id="game-overlay"><div class="overlay-orb" aria-hidden="true">✦</div><p id="overlay-title">Sua criação está pronta.</p><span id="overlay-description">Colete estrelas. Desvie dos blocos vermelhos.</span><button class="button button-primary" id="start-game" type="button">Começar a jogar <span aria-hidden="true">→</span></button></div></div>
+              <div class="game-help"><span>Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ou as setas para mover</span><span id="engine-status">Modo estático · funciona no GitHub Pages</span></div>
+              <div class="touch-controls" aria-label="Controles de movimento"><button type="button" data-move="up" aria-label="Mover para cima">↑</button><div><button type="button" data-move="left" aria-label="Mover para a esquerda">←</button><button type="button" data-move="down" aria-label="Mover para baixo">↓</button><button type="button" data-move="right" aria-label="Mover para a direita">→</button></div></div>
+            </div>
+            <aside class="trace-panel" aria-labelledby="trace-title">
+              <div class="trace-heading"><span class="trace-eyebrow">VISÃO INTERNA · AO VIVO</span><h3 id="trace-title">Por trás do jogo</h3><p>Tecla → direção → posição. Veja o estado que move o personagem.</p></div>
+              <div class="trace-input"><span>ENTRADA ATUAL</span><div><strong id="trace-arrow" aria-hidden="true">·</strong><span id="trace-direction">Aguardando movimento</span></div></div>
+              <div class="trace-pad" aria-label="Direções pressionadas"><span data-trace-key="up">↑</span><div><span data-trace-key="left">←</span><span data-trace-key="down">↓</span><span data-trace-key="right">→</span></div></div>
+              <div class="trace-map-heading"><span>MAPA LÓGICO</span><span>15 × 11</span></div>
+              <div class="trace-grid" id="trace-grid" role="img" aria-label="Mapa lógico do jogo com posição do personagem, estrelas e obstáculos"></div>
+              <div class="trace-legend"><span><i class="legend-player"></i> Você</span><span><i class="legend-trail"></i> Caminho</span><span><i class="legend-star"></i> Estrela</span><span><i class="legend-hazard"></i> Obstáculo</span></div>
+              <div class="trace-readout"><span>POSIÇÃO <strong id="trace-position">X 300 · Y 220</strong></span><span>CÉLULA <strong id="trace-cell">08 / 06</strong></span><span>VELOCIDADE <strong id="trace-speed">5</strong></span></div>
+              <p class="trace-note">A grade espelha o jogo no navegador. Cada quadrado representa 40 × 40 pixels.</p>
+            </aside>
           </div>
           <p class="lab-note">A interface roda no navegador. Quando executada com Flask, a configuração também é validada por uma API em Python.</p>
         </div>

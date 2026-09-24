@@ -61,7 +61,26 @@ with sync_playwright() as playwright:
         assert "velocidade = 8" in page.locator("#code-preview").inner_text()
         page.locator("#start-game").click()
         assert page.locator("#game-overlay").is_hidden()
-        page.wait_for_timeout(150)
+        assert page.locator('.trace-cell').count() == 165
+        assert page.locator('.trace-cell.is-player').count() == 1
+        page.keyboard.down('ArrowRight')
+        page.wait_for_function("document.querySelector('#trace-arrow').textContent === '→' && Number(document.querySelector('#trace-position').textContent.match(/X (\\d+)/)[1]) > 320")
+        assert page.locator('[data-trace-key="right"]').evaluate("el => el.classList.contains('is-active')")
+        page.wait_for_timeout(320)
+        assert page.locator('.trace-cell.is-trail').count() >= 1
+        page.keyboard.up('ArrowRight')
+        page.wait_for_function("document.querySelector('#trace-arrow').textContent === '·'")
+        assert page.locator('#trace-speed').inner_text() == '8'
+        if name == 'mobile':
+            right = page.locator('[data-move="right"]')
+            right.scroll_into_view_if_needed()
+            box = right.bounding_box()
+            page.mouse.move(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+            page.mouse.down()
+            page.wait_for_function("document.querySelector('#trace-arrow').textContent === '→'")
+            page.mouse.up()
+            page.wait_for_function("document.querySelector('#trace-arrow').textContent === '·'")
+        page.locator('#experimento').screenshot(path=str(out_dir / f"{name}-experiment.png"))
         assert not errors, errors
         assert page.locator("body").evaluate("el => el.scrollWidth <= window.innerWidth + 1"), f"horizontal overflow at {width}px"
         page.screenshot(path=str(out_dir / f"{name}.png"), full_page=True)

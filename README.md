@@ -1,6 +1,6 @@
 # Laboratório de ideias
 
-Portfólio interativo para apresentar projetos de desenvolvimento e uma demonstração de ensino de programação. O visitante altera variáveis de um personagem, vê o código Python correspondente e joga um minijogo de coletar estrelas.
+Portfólio interativo para apresentar projetos de desenvolvimento e uma demonstração de ensino de programação. O visitante altera variáveis de um personagem, vê o código Python correspondente e joga um minijogo de coletar estrelas. Um painel lateral espelha, em tempo real, a direção pressionada, o caminho e a posição do personagem numa grade lógica de 15 × 11 células.
 
 ## Executar com Flask
 

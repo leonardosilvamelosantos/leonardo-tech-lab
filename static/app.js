@@ -10,6 +10,7 @@ const heroContext = heroCanvas.getContext('2d');
 const keys = new Set();
 const touchKeys = new Set();
 const game = { running: false, score: 0, lives: 5, time: 30, player: { x: 300, y: 220 }, stars: [], hazards: [], lastFrame: 0, lastSpawn: 0, lastSecond: 0, invincibleUntil: 0, frameId: 0 };
+const trace = { columns: 15, rows: 11, cells: [], trail: [], lastCell: -1, lastPaint: 0 };
 
 function rectangle(ctx, x, y, width, height, color) {
   ctx.fillStyle = color;
@@ -114,6 +115,7 @@ async function validateWithFlask() {
 function setCharacterVariable(name, value) {
   character[name] = ['velocidade', 'energia'].includes(name) ? Number(value) : value;
   updateCode();
+  renderTrace(performance.now(), true);
   validateWithFlask();
 }
 
@@ -129,12 +131,81 @@ function placeCollectible(list, size = 14) {
   return { x: 24 + Math.random() * (gameCanvas.width - 48), y: 24 + Math.random() * (gameCanvas.height - 48), size };
 }
 
+function traceCoordinates(point) {
+  const column = Math.min(trace.columns - 1, Math.max(0, Math.floor(point.x / 40)));
+  const row = Math.min(trace.rows - 1, Math.max(0, Math.floor(point.y / 40)));
+  return { column, row, index: row * trace.columns + column };
+}
+
+function setupTrace() {
+  const fragment = document.createDocumentFragment();
+  for (let index = 0; index < trace.columns * trace.rows; index++) {
+    const cell = document.createElement('span');
+    cell.className = 'trace-cell';
+    fragment.append(cell);
+    trace.cells.push(cell);
+  }
+  $('#trace-grid').append(fragment);
+  renderTrace(performance.now(), true);
+}
+
+function renderTrace(timestamp = performance.now(), force = false) {
+  if (!trace.cells.length || (!force && timestamp - trace.lastPaint < 80)) return;
+  trace.lastPaint = timestamp;
+  const held = (key) => keys.has(key) || touchKeys.has(key);
+  const up = game.running && (held('up') || held('w'));
+  const down = game.running && (held('down') || held('s'));
+  const left = game.running && (held('left') || held('a'));
+  const right = game.running && (held('right') || held('d'));
+  const horizontal = Number(right) - Number(left);
+  const vertical = Number(down) - Number(up);
+  const directions = {
+    '0,-1': ['↑', 'Cima'], '0,1': ['↓', 'Baixo'],
+    '-1,0': ['←', 'Esquerda'], '1,0': ['→', 'Direita'],
+    '-1,-1': ['↖', 'Cima e esquerda'], '1,-1': ['↗', 'Cima e direita'],
+    '-1,1': ['↙', 'Baixo e esquerda'], '1,1': ['↘', 'Baixo e direita']
+  };
+  const [arrow, label] = directions[`${horizontal},${vertical}`] || ['·', 'Parado'];
+  $('#trace-arrow').textContent = arrow;
+  $('#trace-direction').textContent = game.running ? label : 'Aguardando movimento';
+  for (const [direction, active] of Object.entries({ up, down, left, right })) {
+    $(`[data-trace-key="${direction}"]`).classList.toggle('is-active', active);
+  }
+
+  const player = traceCoordinates(game.player);
+  if (player.index !== trace.lastCell) {
+    trace.trail.push(player.index);
+    if (trace.trail.length > 18) trace.trail.shift();
+    trace.lastCell = player.index;
+  }
+  const trail = new Set(trace.trail);
+  const stars = new Set(game.stars.map((item) => traceCoordinates(item).index));
+  const hazards = new Set(game.hazards.map((item) => traceCoordinates(item).index));
+  trace.cells.forEach((cell, index) => {
+    let className = 'trace-cell';
+    if (trail.has(index)) className += ' is-trail';
+    if (stars.has(index)) className = 'trace-cell is-star';
+    if (hazards.has(index)) className = 'trace-cell is-hazard';
+    if (index === player.index) className = 'trace-cell is-player';
+    if (cell.className !== className) cell.className = className;
+  });
+  const x = Math.round(game.player.x);
+  const y = Math.round(game.player.y);
+  $('#trace-position').textContent = `X ${x} · Y ${y}`;
+  $('#trace-cell').textContent = `${String(player.column + 1).padStart(2, '0')} / ${String(player.row + 1).padStart(2, '0')}`;
+  $('#trace-speed').textContent = character.velocidade;
+  $('#trace-grid').setAttribute('aria-label', `Mapa lógico: personagem na coluna ${player.column + 1}, linha ${player.row + 1}; ${game.stars.length} estrela e ${game.hazards.length} obstáculos`);
+}
+
 function startGame() {
   cancelAnimationFrame(game.frameId);
   Object.assign(game, { running: true, score: 0, lives: character.energia, time: 30, player: { x: 300, y: 220 }, stars: [], hazards: [], lastFrame: 0, lastSpawn: 0, lastSecond: 0, invincibleUntil: 0 });
   game.stars.push(placeCollectible(game.stars));
+  trace.trail = [];
+  trace.lastCell = -1;
   $('#game-overlay').hidden = true;
   updateStats();
+  renderTrace(performance.now(), true);
   game.frameId = requestAnimationFrame(gameLoop);
 }
 
@@ -145,6 +216,7 @@ function finishGame() {
   $('#overlay-description').textContent = game.lives <= 0 ? 'Ajuste as variáveis e descubra uma nova estratégia.' : 'Mude os atributos e veja como o jogo responde.';
   $('#start-game').firstChild.textContent = 'Jogar novamente ';
   $('#game-overlay').hidden = false;
+  renderTrace(performance.now(), true);
 }
 
 function updateStats() {
@@ -212,6 +284,7 @@ function gameLoop(timestamp) {
     }
   }
   drawGame();
+  renderTrace(timestamp);
   updateStats();
   if (game.lives <= 0 || game.time <= 0) { finishGame(); return; }
   game.frameId = requestAnimationFrame(gameLoop);
@@ -366,6 +439,7 @@ async function loadProfile() {
 }
 
 setupControls();
+setupTrace();
 setupGame();
 setupLightbox();
 loadProfile();
