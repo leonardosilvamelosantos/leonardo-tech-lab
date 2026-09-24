@@ -22,6 +22,7 @@ with sync_playwright() as playwright:
         assert page.locator("#projects-list article").count() == 6
         assert "Leonardo Santos" in page.locator("#profile-identity").inner_text()
         assert page.locator('#github-link').get_attribute('href') == 'https://github.com/leonardosilvamelosantos'
+        assert page.locator('#linkedin-link').get_attribute('href') == 'https://www.linkedin.com/in/leonardosantos-dev/'
         assert page.locator('#projects-list a[href*="taskbar-code"]').count() == 1
         previews = page.locator('.project-preview img')
         assert previews.count() == 5
