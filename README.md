@@ -31,6 +31,8 @@ Edite [`profile.json`](profile.json): nome, localização, biografia, currículo
 
 Os projetos selecionados já estão em `projects`. Cada entrada aceita `title`, `type`, `description`, `tags`, `url` e, se o projeto não tiver link público, `linkLabel`. Links vazios não serão publicados como URLs. SmartSalão/SalaoIA e Painel Acadêmico estão identificados como projetos sem repositório público.
 
+As prévias ficam em `static/media/`. Para adicionar outra, inclua `preview` no projeto com `src`, `alt` e `caption`. Use `lightbox: true` para abrir imagens ampliadas sobre o fundo desfocado; o GIF do Task Bar Hero Code é exibido diretamente na lista.
+
 ## Estrutura
 
 - `index.html` — conteúdo e navegação;

@@ -244,6 +244,24 @@ function makeLink(url, text, className) {
   return link;
 }
 
+function openProjectLightbox(project, preview) {
+  const dialog = $('#project-lightbox');
+  dialog.style.width = `min(94vw, ${Math.min(preview.width || 1500, 1500) + 40}px)`;
+  $('#project-lightbox-title').textContent = project.title;
+  $('#project-lightbox-image').src = preview.src;
+  $('#project-lightbox-image').alt = preview.alt || `Imagem do projeto ${project.title}`;
+  $('#project-lightbox-caption').textContent = preview.caption || project.title;
+  dialog.showModal();
+  document.body.classList.add('lightbox-open');
+}
+
+function setupLightbox() {
+  const dialog = $('#project-lightbox');
+  $('#project-lightbox-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => document.body.classList.remove('lightbox-open'));
+}
+
 function renderProfile(profile) {
   const name = profile.name || 'Seu nome';
   document.title = `${name} — desenvolvimento, educação e jogos`;
@@ -265,10 +283,45 @@ function renderProfile(profile) {
     const tags = document.createElement('div'); tags.className = 'project-tags';
     (project.tags || []).forEach((tag) => { const chip = document.createElement('span'); chip.textContent = tag; tags.append(chip); });
     details.append(type, title, description, tags);
+    if (project.preview?.src) {
+      const figure = document.createElement('figure');
+      figure.className = `project-preview${project.preview.lightbox ? ' project-preview--image' : ''}`;
+      const previewLink = document.createElement(project.preview.lightbox ? 'button' : 'a');
+      if (project.preview.lightbox) {
+        previewLink.type = 'button';
+        previewLink.addEventListener('click', () => openProjectLightbox(project, project.preview));
+        previewLink.setAttribute('aria-label', `Ampliar imagem de ${project.title}`);
+      } else {
+        previewLink.href = project.preview.src;
+        previewLink.target = '_blank';
+        previewLink.rel = 'noopener noreferrer';
+        previewLink.setAttribute('aria-label', `Abrir demonstração de ${project.title} em outra aba`);
+      }
+      const previewImage = document.createElement('img');
+      previewImage.src = project.preview.src;
+      previewImage.alt = project.preview.alt || `Demonstração visual de ${project.title}`;
+      previewImage.loading = 'lazy';
+      previewImage.decoding = 'async';
+      previewImage.width = project.preview.width || 500;
+      previewImage.height = project.preview.height || 100;
+      const caption = document.createElement('figcaption');
+      caption.textContent = project.preview.caption || `Demonstração de ${project.title}`;
+      previewLink.append(previewImage);
+      figure.append(previewLink, caption);
+      details.append(figure);
+    }
     const links = document.createElement('div'); links.className = 'project-links';
     if (project.url) links.append(makeLink(project.url, 'Ver código ↗', 'project-link'));
     else { const status = document.createElement('span'); status.className = 'project-link'; status.textContent = project.linkLabel || 'Projeto sem link público'; status.setAttribute('aria-disabled', 'true'); links.append(status); }
     if (project.demoUrl) links.append(makeLink(project.demoUrl, 'Ver demonstração ↗', 'project-link'));
+    if (project.preview?.lightbox) {
+      const viewImage = document.createElement('button');
+      viewImage.type = 'button';
+      viewImage.className = 'project-link project-image-button';
+      viewImage.textContent = 'Ver imagem ↗';
+      viewImage.addEventListener('click', () => openProjectLightbox(project, project.preview));
+      links.append(viewImage);
+    }
     row.append(number, details, links); projectList.append(row);
   });
   $('#projects-note').hidden = (profile.projects || []).length > 1;
@@ -314,5 +367,6 @@ async function loadProfile() {
 
 setupControls();
 setupGame();
+setupLightbox();
 loadProfile();
 validateWithFlask();

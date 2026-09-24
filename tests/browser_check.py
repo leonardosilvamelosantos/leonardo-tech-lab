@@ -23,6 +23,29 @@ with sync_playwright() as playwright:
         assert "Leonardo Santos" in page.locator("#profile-identity").inner_text()
         assert page.locator('#github-link').get_attribute('href') == 'https://github.com/leonardosilvamelosantos'
         assert page.locator('#projects-list a[href*="taskbar-code"]').count() == 1
+        previews = page.locator('.project-preview img')
+        assert previews.count() == 4
+        gif = page.locator('.project-preview img[src$=".gif"]')
+        gif.scroll_into_view_if_needed()
+        assert gif.evaluate('async img => { await img.decode(); return img.naturalWidth === 500; }')
+        smart_salao = page.locator('.project-row').filter(has=page.get_by_role('heading', name='SmartSalão / SalaoIA'))
+        smart_salao.get_by_role('button', name='Ver imagem').click()
+        assert page.locator('#project-lightbox').is_visible()
+        assert page.locator('#project-lightbox-image').evaluate('async img => { await img.decode(); return img.naturalWidth === 657; }')
+        assert 'blur' in page.locator('#project-lightbox').evaluate("el => getComputedStyle(el, '::backdrop').backdropFilter")
+        page.screenshot(path=str(out_dir / f"{name}-smart-salao-lightbox.png"))
+        page.keyboard.press('Escape')
+        assert page.locator('#project-lightbox').is_hidden()
+        academic = page.locator('.project-row').filter(has=page.get_by_role('heading', name='Painel Acadêmico'))
+        academic.get_by_role('button', name='Ver imagem').click()
+        assert page.locator('#project-lightbox-image').evaluate('async img => { await img.decode(); return img.naturalWidth === 1884; }')
+        page.locator('#project-lightbox-close').click()
+        assert page.locator('#project-lightbox').is_hidden()
+        certificate = page.locator('.project-row').filter(has=page.get_by_role('heading', name='Certificado SRC'))
+        certificate.get_by_role('button', name='Ver imagem').click()
+        assert page.locator('#project-lightbox-image').evaluate('async img => { await img.decode(); return img.naturalWidth === 1888; }')
+        page.keyboard.press('Escape')
+        assert page.locator('#project-lightbox').is_hidden()
         assert page.locator('#projects-list a[href*="certificado-src"]').count() == 1
         assert page.locator('#projects-list a[href*="JusTrack"]').count() == 1
         assert page.locator('#projects-list a[href*="landing-page-de-certificado"]').count() == 1

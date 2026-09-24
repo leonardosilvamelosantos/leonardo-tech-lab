@@ -33,14 +33,27 @@
       "description": "Plataforma de agendamento para salões e barbearias com painel web, página pública de reservas, API e fluxo de atendimento pelo WhatsApp.",
       "tags": ["Node.js", "PostgreSQL", "Next.js", "WhatsApp"],
       "url": "",
-      "linkLabel": "Repositório privado"
+      "linkLabel": "Repositório privado",
+      "preview": {
+        "src": "static/media/salaoia-preview.png",
+        "alt": "Página AgendaAI para barbearias com demonstração de conversa e agendamento pelo WhatsApp",
+        "caption": "AgendaAI para barbearias — SmartSalão / SalaoIA",
+        "width": 657,
+        "height": 310,
+        "lightbox": true
+      }
     },
     {
       "title": "Task Bar Hero Code",
       "type": "Ferramenta open source",
       "description": "Widget flutuante para Windows que mostra o estado de sessões do Claude Code em tempo real. Combina Python, Tkinter e hooks locais.",
       "tags": ["Python", "Tkinter", "Node.js", "Windows"],
-      "url": "https://github.com/leonardosilvamelosantos/taskbar-code"
+      "url": "https://github.com/leonardosilvamelosantos/taskbar-code",
+      "preview": {
+        "src": "static/media/taskbar-hero-demo.gif",
+        "alt": "Demonstração animada do widget Task Bar Hero Code mostrando o estado de uma sessão no Windows",
+        "caption": "Task Bar Hero Code em funcionamento"
+      }
     },
     {
       "title": "Painel Acadêmico",
@@ -48,7 +61,15 @@
       "description": "Reúne grade de aulas, tarefas e atividades do Canvas em um aplicativo Windows, com sincronização por iCalendar e armazenamento local.",
       "tags": ["Tauri", "Rust", "React", "SQLite"],
       "url": "",
-      "linkLabel": "Projeto local"
+      "linkLabel": "Projeto local",
+      "preview": {
+        "src": "static/media/painel-academico-preview.png",
+        "alt": "Tela inicial do Painel Acadêmico com próxima aula, tarefas e atividades recentes",
+        "caption": "Tela inicial do Painel Acadêmico",
+        "width": 1884,
+        "height": 1002,
+        "lightbox": true
+      }
     },
     {
       "title": "Certificado SRC",
@@ -56,7 +77,15 @@
       "description": "Interface para emissão, consulta e validação de certificados digitais, incluindo verificação de autenticidade por código.",
       "tags": ["Next.js", "TypeScript", "API", "Certificados"],
       "url": "https://github.com/leonardosilvamelosantos/certificado-src",
-      "demoUrl": "https://v0-landing-page-de-certificado.vercel.app/"
+      "demoUrl": "https://v0-landing-page-de-certificado.vercel.app/",
+      "preview": {
+        "src": "static/media/certificado-src-preview.png",
+        "alt": "Página de certificado de peregrinação de Santa Rita de Cássia com modelo ilustrativo do certificado",
+        "caption": "Página do Certificado SRC",
+        "width": 1888,
+        "height": 891,
+        "lightbox": true
+      }
     },
     {
       "title": "JusTrack",
